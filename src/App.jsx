@@ -7,6 +7,7 @@ import { singleMovie } from "./components/sampleData/singleMovie";
 import SingleMoviePage from "./components/SingleMoviePage";
 import { Routes, Route } from "react-router-dom";
 import NotFound from "./components/NotFound";
+import AboutMe from "./components/AboutMe";
 
 function App() {
   const [moviesList, setmoviesList] = useState(results);
@@ -53,10 +54,10 @@ function App() {
           element={
             <>
               <SingleMoviePage singleMovie={singleMovieInfo} />
-              <Footer />
             </>
           }
         />
+        <Route path="/about-me" element={<AboutMe />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

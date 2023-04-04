@@ -44,16 +44,18 @@ export function MoviePoster({
   }
 
   return (
-    <Link to={`/${movie.id}`}>
+    <>
       <div
         key={movie.id}
         className="moviePoster"
         onClick={() => handleClick(movie.id)}
       >
-        <img
-          src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-          alt={movie.title}
-        />
+        <Link to={`/${movie.id}`}>
+          <img
+            src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+            alt={movie.title}
+          />
+        </Link>
         <div className="title-fav">
           <p>{movie.title}</p>
           <p className="favorite" onClick={(e) => handleFavorites(e, movie)}>
@@ -61,6 +63,6 @@ export function MoviePoster({
           </p>
         </div>
       </div>
-    </Link>
+    </>
   );
 }
