@@ -5,6 +5,8 @@ import Main from "./components/Main";
 import { results } from "./components/sampleData/searchResult";
 import { singleMovie } from "./components/sampleData/singleMovie";
 import SingleMoviePage from "./components/SingleMoviePage";
+import { Routes, Route } from "react-router-dom";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [moviesList, setmoviesList] = useState(results);
@@ -29,18 +31,36 @@ function App() {
   }
 
   return (
-    <>
+    <div>
       <Header setmoviesList={setmoviesList} />
-      <Main
-        results={moviesList}
-        setsingleMovieInfo={setsingleMovieInfo}
-        favorites={favorites}
-        setFavorites={setFavorites}
-        updateLocalStorage={updateLocalStorage}
-      />
-      <SingleMoviePage singleMovie={singleMovieInfo} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Main
+                results={moviesList}
+                setsingleMovieInfo={setsingleMovieInfo}
+                favorites={favorites}
+                setFavorites={setFavorites}
+                updateLocalStorage={updateLocalStorage}
+              />
+            </>
+          }
+        />
+        <Route
+          path="/:movieId"
+          element={
+            <>
+              <SingleMoviePage singleMovie={singleMovieInfo} />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

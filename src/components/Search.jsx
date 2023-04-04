@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { API_KEY } from "./API/TMDB_API";
+import { Link } from "react-router-dom";
 
 export default function Search({ setmoviesList }) {
   const [search, setSearch] = useState("");
@@ -30,7 +31,11 @@ export default function Search({ setmoviesList }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button onClick={HandleSearch}>Search</button>
+        <Link to="/">
+          <button onClick={HandleSearch} disabled={search.length === 0}>
+            Search
+          </button>
+        </Link>
       </label>
       {}
     </>

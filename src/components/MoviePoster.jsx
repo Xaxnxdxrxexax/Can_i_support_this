@@ -1,4 +1,5 @@
 import { API_KEY } from "./API/TMDB_API";
+import { Link } from "react-router-dom";
 
 export function MoviePoster({
   movie,
@@ -43,21 +44,23 @@ export function MoviePoster({
   }
 
   return (
-    <div
-      key={movie.id}
-      className="moviePoster"
-      onClick={() => handleClick(movie.id)}
-    >
-      <img
-        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-        alt={movie.title}
-      />
-      <div className="title-fav">
-        <p>{movie.title}</p>
-        <p className="favorite" onClick={(e) => handleFavorites(e, movie)}>
-          ❤️
-        </p>
+    <Link to={`/${movie.id}`}>
+      <div
+        key={movie.id}
+        className="moviePoster"
+        onClick={() => handleClick(movie.id)}
+      >
+        <img
+          src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+          alt={movie.title}
+        />
+        <div className="title-fav">
+          <p>{movie.title}</p>
+          <p className="favorite" onClick={(e) => handleFavorites(e, movie)}>
+            ❤️
+          </p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
