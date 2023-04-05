@@ -54,11 +54,16 @@ export function MoviePoster({
           <img
             src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
             alt={movie.title}
+            title={`Go to ${movie.title}'s detailed page`}
           />
         </Link>
         <div className="title-fav">
           <p>{movie.title}</p>
-          <p className="favorite" onClick={(e) => handleFavorites(e, movie)}>
+          <p
+            className="favorite"
+            onClick={(e) => handleFavorites(e, movie)}
+            title={`Add ${movie.title} to favorites`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

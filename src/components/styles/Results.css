@@ -33,3 +33,11 @@
   justify-content: space-between;
   padding-inline: 5px;
 }
+
+.favorite {
+  transition: transform 0.2s;
+}
+
+.favorite:hover {
+  transform: scale(1.5);
+}
