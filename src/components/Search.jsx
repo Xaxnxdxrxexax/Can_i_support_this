@@ -34,7 +34,7 @@ export default function Search({ setmoviesList }) {
         <input
           type="text"
           id="search"
-          placeholder="search..."
+          placeholder="type here"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onKeyDown={(e) => {
