@@ -1,16 +1,34 @@
 import "./styles/SimpleMoviePage.css";
-import OPENAI_API_KEY from "../components/API/openAi_API";
 import { Configuration, OpenAIApi } from "openai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import IMDB_logo from "../IMDB_logo.png";
 
 export default function SingleMoviePage({ singleMovie }) {
   const [chatgptResponse, setChatgptResponse] = useState("");
   const [status, setStatus] = useState("waiting");
+  const [actors, setActors] = useState([]);
   const openai = new OpenAIApi(
     new Configuration({
-      apiKey: OPENAI_API_KEY,
+      apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     })
   );
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/${singleMovie.id}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((actors) => {
+        setActors(actors.cast);
+      })
+      .catch((error) => {
+        console.error("error fetching data", error);
+      });
+  }, [actors]);
 
   async function handleResponse() {
     setStatus("searching");
@@ -33,20 +51,57 @@ export default function SingleMoviePage({ singleMovie }) {
   return (
     <div className="singleMoviePage">
       <img
+        className="backgroundPoster"
         src={`https://image.tmdb.org/t/p/original/${singleMovie.poster_path}`}
         alt={singleMovie.title}
       />
-      <h2>{singleMovie.title}</h2>
-      <p>Genres</p>
-      <ul>
-        {singleMovie.genres.map((genre) => (
-          <li key={genre.id}>{genre.name}</li>
-        ))}
-      </ul>
+      <div className="topPageParent">
+        <img
+          className="foregroundPoster"
+          src={`https://image.tmdb.org/t/p/w300/${singleMovie.poster_path}`}
+          alt={singleMovie.title}
+        />
+        <div className="topPageChild">
+          <div className="titleRatingImdb">
+            <h1>{singleMovie.title}</h1>
+            <a
+              href={`https://www.imdb.com/title/${singleMovie.imdb_id}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                className="IMDB_logo"
+                src={IMDB_logo}
+                alt="IMDB logo"
+                title={`go to ${singleMovie.title} IMDB webpage`}
+              />
+            </a>
+            <p className="rating">{singleMovie.vote_average.toFixed(1)}</p>
+          </div>
+          <p>Genres</p>
+          <ul className="genres">
+            {singleMovie.genres.map((genre) => (
+              <li key={genre.id}>{genre.name}</li>
+            ))}
+          </ul>
+          <p>Top cast:</p>
+          <ul className="actors">
+            {actors.slice(0, 10).map((actor) => (
+              <li key={actor.id}>
+                {actor.name} as "{actor.character}"
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
       <h2>Overview:</h2>
-      <p>{singleMovie.overview}</p>
-      <h2>Can i support this movie? (powered by chatGPT)</h2>
-      <button onClick={handleResponse}>generate generate response</button>
+      <p className="overviewText">{singleMovie.overview}</p>
+      <h2>
+        Can i support this movie? <span>(powered by chatGPT)</span>
+      </h2>
+      <button className="chatGPTButton" onClick={handleResponse}>
+        Generate response
+      </button>
       {status === "searching" && (
         <p>waiting for a response, this may take up to 10 seconds</p>
       )}

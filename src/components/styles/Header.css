@@ -16,21 +16,21 @@ header > a {
   cursor: pointer;
 }
 
-input {
+header > label > input {
   background-color: black;
   border: none;
   color: white;
   border-bottom: 1px solid gray;
 }
 
-button {
+header > label > a > button {
   background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid white;
   border-radius: 5px;
   color: white;
 }
 
-button:disabled {
+header > label > a > button:disabled {
   background-color: black;
   border: 1px solid gray;
   border-left: none;

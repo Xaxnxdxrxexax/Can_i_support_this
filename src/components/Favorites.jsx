@@ -14,6 +14,7 @@ export default function Favorites({
         {favorites.map((movie) => {
           return (
             <MoviePoster
+              key={movie.id}
               movie={movie}
               setsingleMovieInfo={setsingleMovieInfo}
               setFavorites={setFavorites}

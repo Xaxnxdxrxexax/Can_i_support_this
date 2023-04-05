@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { API_KEY } from "./API/TMDB_API";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 export default function Search({ setmoviesList }) {
   const [search, setSearch] = useState("");
@@ -8,7 +7,7 @@ export default function Search({ setmoviesList }) {
   async function HandleSearch() {
     const urlSafeSearch = encodeURIComponent(search);
     fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${urlSafeSearch}`
+      `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${urlSafeSearch}`
     )
       .then((response) => {
         if (response.ok) {
@@ -26,6 +25,8 @@ export default function Search({ setmoviesList }) {
     if (e.keyCode === 13) {
       HandleSearch();
       setSearch("");
+      return redirect("/");
+      //TODO it does not redirect on enter key
     }
   }
   return (

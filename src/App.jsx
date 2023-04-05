@@ -38,6 +38,7 @@ function App() {
           element={
             <>
               <Main
+                setmoviesList={setmoviesList}
                 results={moviesList}
                 setsingleMovieInfo={setsingleMovieInfo}
                 favorites={favorites}
@@ -64,9 +65,3 @@ function App() {
 }
 
 export default App;
-
-const movieSearch =
-  "https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher";
-
-const singleMovieRequest =
-  "https://api.themoviedb.org/3/movie/343611?api_key={api_key}";
