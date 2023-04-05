@@ -21,6 +21,13 @@ export default function Search({ setmoviesList }) {
         console.error("error fetching data", error);
       });
   }
+
+  function handleKeyPress(e) {
+    if (e.keyCode === 13) {
+      HandleSearch();
+      setSearch("");
+    }
+  }
   return (
     <>
       <label htmlFor="search">
@@ -30,6 +37,9 @@ export default function Search({ setmoviesList }) {
           placeholder="search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={(e) => {
+            handleKeyPress(e);
+          }}
         />
         <Link to="/">
           <button
@@ -40,7 +50,6 @@ export default function Search({ setmoviesList }) {
             disabled={search.length === 0}
           >
             Search
-            {/* TODO search doesnt start with enter key*/}
           </button>
         </Link>
       </label>
