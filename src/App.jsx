@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import { results } from "./components/sampleData/searchResult";
 import { singleMovie } from "./components/sampleData/singleMovie";
 import SingleMoviePage from "./components/SingleMoviePage";
 import { Routes, Route } from "react-router-dom";
@@ -10,8 +9,7 @@ import NotFound from "./components/NotFound";
 import AboutMe from "./components/AboutMe";
 
 function App() {
-  const [moviesList, setmoviesList] = useState(results);
-  //TODO the site breakes if i start with null
+  const [moviesList, setmoviesList] = useState(null);
   const [singleMovieInfo, setsingleMovieInfo] = useState(singleMovie);
   const [favorites, setFavorites] = useState([]);
 

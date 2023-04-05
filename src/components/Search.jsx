@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { API_KEY } from "./API/TMDB_API";
 import { Link } from "react-router-dom";
 
@@ -32,8 +32,15 @@ export default function Search({ setmoviesList }) {
           onChange={(e) => setSearch(e.target.value)}
         />
         <Link to="/">
-          <button onClick={HandleSearch} disabled={search.length === 0}>
+          <button
+            onClick={() => {
+              HandleSearch();
+              setSearch("");
+            }}
+            disabled={search.length === 0}
+          >
             Search
+            {/* TODO search doesnt start with enter key*/}
           </button>
         </Link>
       </label>

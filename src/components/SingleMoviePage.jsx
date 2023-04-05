@@ -8,7 +8,7 @@ export default function SingleMoviePage({ singleMovie }) {
   const [status, setStatus] = useState("waiting");
   const openai = new OpenAIApi(
     new Configuration({
-      apiKey: "",
+      apiKey: OPENAI_API_KEY,
     })
   );
 

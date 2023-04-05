@@ -12,17 +12,19 @@ export default function Results({
     <>
       <h2>Results</h2>
       <div className="movieParent">
-        {movieList.results.map((movie) => {
-          return (
-            <MoviePoster
-              movie={movie}
-              setsingleMovieInfo={setsingleMovieInfo}
-              setFavorites={setFavorites}
-              favorites={favorites}
-              updateLocalStorage={updateLocalStorage}
-            />
-          );
-        })}
+        {movieList &&
+          movieList.results.map((movie) => {
+            return (
+              <MoviePoster
+                key={movie.id}
+                movie={movie}
+                setsingleMovieInfo={setsingleMovieInfo}
+                setFavorites={setFavorites}
+                favorites={favorites}
+                updateLocalStorage={updateLocalStorage}
+              />
+            );
+          })}
       </div>
     </>
   );
