@@ -1,0 +1,36 @@
+.movieParent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.moviePoster {
+  display: grid;
+  grid-template-rows: 4fr 1fr;
+  align-items: center;
+  width: 200px;
+  margin: 10px;
+  border-radius: 15px;
+  border: 1px solid black;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.moviePoster > img {
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+}
+
+.moviePoster > img:hover {
+  filter: blur(5x);
+}
+
+.moviePoster > div > .favorite {
+  border: 1px solid red;
+}
+
+.title-fav {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 5px;
+}

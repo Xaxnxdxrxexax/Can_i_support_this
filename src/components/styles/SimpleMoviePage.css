@@ -1,0 +1,14 @@
+.singleMoviePage {
+  position: relative;
+  color: white;
+}
+.singleMoviePage > * {
+  outline: 1px solid green;
+}
+
+.singleMoviePage > img {
+  width: 100%;
+  filter: brightness(40%) blur(5px);
+  position: absolute;
+  z-index: -1;
+}

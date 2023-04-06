@@ -1,0 +1,15 @@
+footer {
+  background-color: black;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+}
+
+footer > p {
+  color: white;
+  padding-inline-end: 14px;
+}
