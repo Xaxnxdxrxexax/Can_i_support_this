@@ -2,7 +2,7 @@ import profilePicture from "../Profile.jpeg";
 import "./styles/AboutMe.css";
 export default function AboutMe() {
   return (
-    <>
+    <div className="AboutMeParent">
       <h2>Hi visitor :)</h2>
       <img
         className="profilePicture"
@@ -28,12 +28,27 @@ export default function AboutMe() {
       </p>
       <p>
         I hope you find this little website useful and do not hesitate to
-        contact me for any questions.
+        <a
+          href="mailto:andrea@sansone.no"
+          className="contactMe"
+          title="send me an email"
+        >
+          contact me
+        </a>{" "}
+        or go to my{" "}
+        <a
+          href="https://github.com/Xaxnxdxrxexax"
+          className="contactMe"
+          title="go to my github"
+        >
+          GitHub
+        </a>
+        for any questions.
       </p>
       <div className="rightSide">
         <p>Sincerely</p>
         <p>Andrea.</p>
       </div>
-    </>
+    </div>
   );
 }

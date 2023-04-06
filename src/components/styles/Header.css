@@ -1,9 +1,10 @@
 header {
   display: flex;
+  flex-flow: wrap;
   align-items: center;
   justify-content: space-around;
   background-color: black;
-  height: 100px;
+  height: inherit;
 }
 
 header > h2 {
@@ -37,4 +38,19 @@ header > label > a > button:disabled {
   border-top: none;
   border-radius: 5px;
   color: gray;
+}
+
+@media only screen and (max-width: 650px) {
+  header {
+    flex-direction: column;
+  }
+
+  .aboutMeLink {
+    align-self: flex-end;
+    padding-inline: 15px;
+  }
+
+  .moviePoster {
+    width: 50%;
+  }
 }

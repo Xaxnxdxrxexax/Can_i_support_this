@@ -54,3 +54,38 @@
 span {
   font-size: x-small;
 }
+
+.responseTitleAndButton {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.chatGPTButton {
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  padding: 3px 6px;
+  cursor: pointer;
+}
+
+.chatGPTButton:hover {
+  background-color: white;
+  color: black;
+}
+
+@media only screen and (max-width: 650px) {
+  .topPageParent {
+    flex-wrap: wrap;
+  }
+
+  .foregroundPoster {
+    width: 60%;
+    margin-inline: auto;
+  }
+
+  .responseTitleAndButton {
+    flex-wrap: wrap;
+  }
+}

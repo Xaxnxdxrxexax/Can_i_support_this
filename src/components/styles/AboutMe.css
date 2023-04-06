@@ -7,3 +7,16 @@
   text-align: right;
   padding-right: 15px;
 }
+
+.AboutMeParent {
+  padding: 15px;
+}
+
+.contactMe {
+  color: black;
+  padding-inline: 5px;
+}
+
+.contactMe:hover {
+  color: brown;
+}

@@ -42,7 +42,7 @@ export default function Search({ setmoviesList }) {
             handleKeyPress(e);
           }}
         />
-        <Link to="/">
+        <Link to="/" tabIndex={-1}>
           <button
             onClick={() => {
               HandleSearch();

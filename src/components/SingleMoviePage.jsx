@@ -29,6 +29,7 @@ export default function SingleMoviePage({ singleMovie }) {
         console.error("error fetching data", error);
       });
   }, [actors]);
+  //TODO ask Jamy about this
 
   async function handleResponse() {
     setStatus("searching");
@@ -96,12 +97,16 @@ export default function SingleMoviePage({ singleMovie }) {
       </div>
       <h2>Overview:</h2>
       <p className="overviewText">{singleMovie.overview}</p>
-      <h2>
-        Can i support this movie? <span>(powered by chatGPT)</span>
-      </h2>
-      <button className="chatGPTButton" onClick={handleResponse}>
-        Generate response
-      </button>
+      <div className="responseTitleAndButton">
+        <h2>
+          Can i support this movie? <span>(powered by chatGPT)</span>
+        </h2>
+        {chatgptResponse.length === 0 && (
+          <button className="chatGPTButton" onClick={handleResponse}>
+            Generate response
+          </button>
+        )}
+      </div>
       {status === "searching" && (
         <p>waiting for a response, this may take up to 10 seconds</p>
       )}
