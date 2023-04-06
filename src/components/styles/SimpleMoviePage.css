@@ -75,6 +75,16 @@ span {
   color: black;
 }
 
+.chatGPTButton:disabled {
+  color: gray;
+  background-color: darkgray;
+}
+.chatGPTButton:disabled:hover {
+  color: gray;
+  background-color: darkgray;
+  cursor: wait;
+}
+
 @media only screen and (max-width: 650px) {
   .topPageParent {
     flex-wrap: wrap;

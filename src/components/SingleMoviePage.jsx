@@ -102,7 +102,11 @@ export default function SingleMoviePage({ singleMovie }) {
           Can i support this movie? <span>(powered by chatGPT)</span>
         </h2>
         {chatgptResponse.length === 0 && (
-          <button className="chatGPTButton" onClick={handleResponse}>
+          <button
+            className="chatGPTButton"
+            onClick={handleResponse}
+            disabled={status === "searching"}
+          >
             Generate response
           </button>
         )}
