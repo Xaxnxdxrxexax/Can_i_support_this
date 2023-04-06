@@ -28,8 +28,7 @@ export default function SingleMoviePage({ singleMovie }) {
       .catch((error) => {
         console.error("error fetching data", error);
       });
-  }, [actors]);
-  //TODO ask Jamy about this
+  }, [actors, singleMovie.id]);
 
   async function handleResponse() {
     setStatus("searching");
