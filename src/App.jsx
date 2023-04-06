@@ -17,6 +17,7 @@ function App() {
     const movieFavorites = JSON.parse(
       localStorage.getItem("can-i-support-this-fav")
     );
+
     if (movieFavorites) {
       setFavorites(movieFavorites);
     }

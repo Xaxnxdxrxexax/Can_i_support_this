@@ -1,42 +1,15 @@
-// import { render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import SingleMoviePage from "../SingleMoviePage";
+import { singleMovie } from "../sampleData/singleMovie";
 
-// import { MoviePoster } from "../MoviePoster";
+describe("Single movie page tests", () => {
+  it("Renders App component", () => {
+    render(<SingleMoviePage singleMovie={singleMovie} />);
+  });
 
-// describe("first test", () => {
-//   let defaultProps;
-
-//   beforeEach(() => {
-//     defaultProps = {
-//       movie: {},
-//       setsingleMovieInfo: jest.fn(),
-//       setFavorites: jest.fn(),
-//       favorites,
-//       updateLocalStorage,
-//     };
-//   });
-//   it("makes sure true is really true", () => {
-//     render(<MoviePoster {...defaultProps} />);
-
-//     expect(screen.getByTestId("MoviePoster")).toEqual(true);
-//   });
-
-//   describe("when no movies exist", () => {
-//     it("displays an empty list", () => {
-//         const title = "something"
-//       defaultProps.movies = {title};
-
-//       render(<MoviePoster {...defaultProps} />);
-
-//       expect(screen.getByTestId("MoviePoster").text()).toEqual(title);
-//     });
-//   });
-
-//   it("makes sure true is really true", () => {
-//     global.fetch = jest.fn(() => {})
-//     render(<MoviePoster {...defaultProps} />);
-
-//     screen.getByTestId("something").trigger("click")
-
-//     expect(defaultProps.setFavorites).toHaveBeenCalledWith({});
-//   });
-// });
+  it("Expect to be Genres and Top cast (async)", async () => {
+    render(<SingleMoviePage singleMovie={singleMovie} />);
+    expect(screen.getByText("Genres")).toBeInTheDocument();
+    expect(await screen.findByText("Top cast:")).toBeInTheDocument();
+  });
+});

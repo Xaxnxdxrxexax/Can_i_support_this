@@ -21,11 +21,11 @@ export default function Search({ setmoviesList }) {
       });
   }
 
-  function handleKeyPress(e) {
+  function HandleKeyPress(e) {
     if (e.keyCode === 13) {
       HandleSearch();
       setSearch("");
-      return redirect("/");
+      redirect("/");
       //TODO it does not redirect on enter key
     }
   }
@@ -39,7 +39,7 @@ export default function Search({ setmoviesList }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onKeyDown={(e) => {
-            handleKeyPress(e);
+            HandleKeyPress(e);
           }}
         />
         <Link to="/" tabIndex={-1}>

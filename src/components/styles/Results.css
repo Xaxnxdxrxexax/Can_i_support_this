@@ -45,10 +45,12 @@
 
 @media only screen and (max-width: 650px) {
   .moviePoster {
-    width: 40%;
+    width: 225px;
   }
 
   .moviePoster > a > img {
     filter: blur(0px);
+    object-fit: contain;
+    width: 100%;
   }
 }

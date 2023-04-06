@@ -43,6 +43,7 @@ header > label > a > button:disabled {
 @media only screen and (max-width: 650px) {
   header {
     flex-direction: column;
+    gap: 20px;
   }
 
   .aboutMeLink {
