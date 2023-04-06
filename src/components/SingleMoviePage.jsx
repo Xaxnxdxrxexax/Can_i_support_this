@@ -6,7 +6,7 @@ import IMDB_logo from "../IMDB_logo.png";
 export default function SingleMoviePage({ singleMovie }) {
   const [chatgptResponse, setChatgptResponse] = useState("");
   const [status, setStatus] = useState("waiting");
-  const [actors, setActors] = useState([]);
+  const [cast, setCast] = useState([]);
   const openai = new OpenAIApi(
     new Configuration({
       apiKey: process.env.REACT_APP_OPENAI_API_KEY,
@@ -23,12 +23,12 @@ export default function SingleMoviePage({ singleMovie }) {
         throw response;
       })
       .then((actors) => {
-        setActors(actors.cast);
+        setCast(actors.cast);
       })
       .catch((error) => {
         console.error("error fetching data", error);
       });
-  }, [actors, singleMovie.id]);
+  }, [singleMovie.id]);
 
   async function handleResponse() {
     setStatus("searching");
@@ -86,7 +86,7 @@ export default function SingleMoviePage({ singleMovie }) {
           </ul>
           <p>Top cast:</p>
           <ul className="actors">
-            {actors.slice(0, 10).map((actor) => (
+            {cast.slice(0, 10).map((actor) => (
               <li key={actor.id}>
                 {actor.name} as "{actor.character}"
               </li>
