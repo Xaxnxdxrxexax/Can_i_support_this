@@ -7,7 +7,7 @@ export default function Header({ setmoviesList }) {
     <>
       <header>
         <Link to="/">
-          <h2>Should i watch this movie?</h2>
+          <h2>Is this movie controversial?</h2>
         </Link>
         <Search setmoviesList={setmoviesList} />
         <Link to="/about-me" className="aboutMeLink">
