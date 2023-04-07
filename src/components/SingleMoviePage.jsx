@@ -107,7 +107,8 @@ export default function SingleMoviePage({ singleMovie }) {
         <p className="overviewText">{singleMovie.overview}</p>
         <div className="responseTitleAndButton">
           <h2>
-            Can i support this movie? <span>(powered by chatGPT)</span>
+            Is {singleMovie.title} controversial?{" "}
+            <span>(powered by chatGPT)</span>
           </h2>
           {chatgptResponse.length === 0 && (
             <button
