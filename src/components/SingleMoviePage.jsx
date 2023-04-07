@@ -44,8 +44,12 @@ export default function SingleMoviePage({ singleMovie }) {
       })
       .then((res) => {
         setChatgptResponse(res.data.choices[0].message.content);
+        setStatus("waiting");
+      })
+      .catch((error) => {
+        console.error("error fetching data", error);
+        setStatus("error");
       });
-    setStatus("waiting");
   }
 
   return (
@@ -112,6 +116,11 @@ export default function SingleMoviePage({ singleMovie }) {
       </div>
       {status === "searching" && (
         <p>waiting for a response, this may take up to 10 seconds</p>
+      )}
+      {status === "error" && (
+        <p>
+          there was an error fetching the data, see the console for more info
+        </p>
       )}
       <p>{chatgptResponse}</p>
     </div>

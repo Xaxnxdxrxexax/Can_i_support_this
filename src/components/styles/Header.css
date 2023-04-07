@@ -17,21 +17,21 @@ header > a {
   cursor: pointer;
 }
 
-header > label > input {
+header > form > label > input {
   background-color: black;
   border: none;
   color: white;
   border-bottom: 1px solid gray;
 }
 
-header > label > a > button {
+header > form > label > a > button {
   background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid white;
   border-radius: 5px;
   color: white;
 }
 
-header > label > a > button:disabled {
+header > form > label > a > button:disabled {
   background-color: black;
   border: 1px solid gray;
   border-left: none;

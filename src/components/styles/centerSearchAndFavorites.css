@@ -3,13 +3,13 @@
   justify-content: center;
 }
 
-.centerSearch > label > input {
+.centerSearch > form > label > input {
   border: none;
   transform: scale(1.2);
   border-bottom: 1px solid gray;
 }
 
-.centerSearch > label > a > button {
+.centerSearch > form > label > a > button {
   background-color: white;
   border: 1px solid gray;
   border-top: none;

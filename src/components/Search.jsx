@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Search({ setmoviesList }) {
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   async function HandleSearch() {
     const urlSafeSearch = encodeURIComponent(search);
@@ -21,16 +22,19 @@ export default function Search({ setmoviesList }) {
       });
   }
 
+  function handleSubmit() {
+    HandleSearch();
+    setSearch("");
+    navigate("/");
+  }
+
   function HandleKeyPress(e) {
     if (e.keyCode === 13) {
-      HandleSearch();
-      setSearch("");
-      redirect("/");
-      //TODO it does not redirect on enter key
+      handleSubmit();
     }
   }
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="search">
         <input
           type="text"
@@ -44,6 +48,7 @@ export default function Search({ setmoviesList }) {
         />
         <Link to="/" tabIndex={-1}>
           <button
+            type="submit"
             onClick={() => {
               HandleSearch();
               setSearch("");
@@ -55,6 +60,6 @@ export default function Search({ setmoviesList }) {
         </Link>
       </label>
       {}
-    </>
+    </form>
   );
 }

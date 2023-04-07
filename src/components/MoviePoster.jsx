@@ -92,7 +92,7 @@ function FavoriteSVG({ favorites, movie }) {
       viewBox="0 0 16 16"
       title={`Add ${movie.title} to favorites`}
     >
-      <title>Favorite icon</title>
+      <title>{`Add ${movie.title} to favorites`}</title>
       <path
         title="heart"
         fillRule="evenodd"
