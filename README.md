@@ -17,6 +17,7 @@ The idea is to have an overview of any controversies related to the people that 
 - Jest for some small unit testing
 - Media queries for responsive web design
 - Git/Github for version control
+- Firefox accessibility software
 
 ### To test this website locally
 
