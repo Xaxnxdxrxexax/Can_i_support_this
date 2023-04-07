@@ -13,22 +13,24 @@ export default function SingleMoviePage({ singleMovie }) {
     })
   );
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${singleMovie.id}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((actors) => {
-        setCast(actors.cast);
-      })
-      .catch((error) => {
-        console.error("error fetching data", error);
-      });
-  }, [singleMovie.id]);
+    if (singleMovie !== null) {
+      fetch(
+        `https://api.themoviedb.org/3/movie/${singleMovie.id}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
+      )
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw response;
+        })
+        .then((actors) => {
+          setCast(actors.cast);
+        })
+        .catch((error) => {
+          console.error("error fetching data", error);
+        });
+    }
+  }, [singleMovie?.id]);
 
   async function handleResponse() {
     setStatus("searching");
@@ -52,77 +54,81 @@ export default function SingleMoviePage({ singleMovie }) {
       });
   }
 
-  return (
-    <div className="singleMoviePage">
-      <img
-        className="backgroundPoster"
-        src={`https://image.tmdb.org/t/p/original/${singleMovie.poster_path}`}
-        alt={singleMovie.title}
-      />
-      <div className="topPageParent">
+  if (singleMovie === null) {
+    return <p>search for a movie first</p>;
+  } else {
+    return (
+      <div className="singleMoviePage">
         <img
-          className="foregroundPoster"
-          src={`https://image.tmdb.org/t/p/w300/${singleMovie.poster_path}`}
+          className="backgroundPoster"
+          src={`https://image.tmdb.org/t/p/original/${singleMovie.poster_path}`}
           alt={singleMovie.title}
         />
-        <div className="topPageChild">
-          <div className="titleRatingImdb">
-            <h1>{singleMovie.title}</h1>
-            <a
-              href={`https://www.imdb.com/title/${singleMovie.imdb_id}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                className="IMDB_logo"
-                src={IMDB_logo}
-                alt="IMDB logo"
-                title={`go to ${singleMovie.title} IMDB webpage`}
-              />
-            </a>
-            <p className="rating">{singleMovie.vote_average.toFixed(1)}</p>
+        <div className="topPageParent">
+          <img
+            className="foregroundPoster"
+            src={`https://image.tmdb.org/t/p/w300/${singleMovie.poster_path}`}
+            alt={singleMovie.title}
+          />
+          <div className="topPageChild">
+            <div className="titleRatingImdb">
+              <h1>{singleMovie.title}</h1>
+              <a
+                href={`https://www.imdb.com/title/${singleMovie.imdb_id}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className="IMDB_logo"
+                  src={IMDB_logo}
+                  alt="IMDB logo"
+                  title={`go to ${singleMovie.title} IMDB webpage`}
+                />
+              </a>
+              <p className="rating">{singleMovie.vote_average.toFixed(1)}</p>
+            </div>
+            <p>Genres</p>
+            <ul className="genres">
+              {singleMovie.genres.map((genre) => (
+                <li key={genre.id}>{genre.name}</li>
+              ))}
+            </ul>
+            <p>Top cast:</p>
+            <ul className="actors">
+              {cast.slice(0, 10).map((actor) => (
+                <li key={actor.id}>
+                  {actor.name} as "{actor.character}"
+                </li>
+              ))}
+            </ul>
           </div>
-          <p>Genres</p>
-          <ul className="genres">
-            {singleMovie.genres.map((genre) => (
-              <li key={genre.id}>{genre.name}</li>
-            ))}
-          </ul>
-          <p>Top cast:</p>
-          <ul className="actors">
-            {cast.slice(0, 10).map((actor) => (
-              <li key={actor.id}>
-                {actor.name} as "{actor.character}"
-              </li>
-            ))}
-          </ul>
         </div>
-      </div>
-      <h2>Overview:</h2>
-      <p className="overviewText">{singleMovie.overview}</p>
-      <div className="responseTitleAndButton">
-        <h2>
-          Can i support this movie? <span>(powered by chatGPT)</span>
-        </h2>
-        {chatgptResponse.length === 0 && (
-          <button
-            className="chatGPTButton"
-            onClick={handleResponse}
-            disabled={status === "searching"}
-          >
-            Generate response
-          </button>
+        <h2>Overview:</h2>
+        <p className="overviewText">{singleMovie.overview}</p>
+        <div className="responseTitleAndButton">
+          <h2>
+            Can i support this movie? <span>(powered by chatGPT)</span>
+          </h2>
+          {chatgptResponse.length === 0 && (
+            <button
+              className="chatGPTButton"
+              onClick={handleResponse}
+              disabled={status === "searching"}
+            >
+              Generate response
+            </button>
+          )}
+        </div>
+        {status === "searching" && (
+          <p>waiting for a response, this may take up to 10 seconds</p>
         )}
+        {status === "error" && (
+          <p>
+            there was an error fetching the data, see the console for more info
+          </p>
+        )}
+        <p>{chatgptResponse}</p>
       </div>
-      {status === "searching" && (
-        <p>waiting for a response, this may take up to 10 seconds</p>
-      )}
-      {status === "error" && (
-        <p>
-          there was an error fetching the data, see the console for more info
-        </p>
-      )}
-      <p>{chatgptResponse}</p>
-    </div>
-  );
+    );
+  }
 }

@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: stretch;
 }
 
 .moviePoster {
@@ -14,6 +15,11 @@
   border: 1px solid gray;
   overflow: hidden;
   cursor: pointer;
+}
+
+.moviePoster > a {
+  display: block;
+  height: 100%;
 }
 
 .moviePoster > a > img {
