@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.61774040.css",
+    "main.js": "/static/js/main.ac132360.js",
+    "static/js/787.4ece7972.chunk.js": "/static/js/787.4ece7972.chunk.js",
+    "static/media/IMDB_logo.png": "/static/media/IMDB_logo.1fd6c3b4360078e11b0d.png",
+    "static/media/Profile.jpeg": "/static/media/Profile.c48429f9a44313998b19.jpeg",
+    "index.html": "/index.html",
+    "main.61774040.css.map": "/static/css/main.61774040.css.map",
+    "main.ac132360.js.map": "/static/js/main.ac132360.js.map",
+    "787.4ece7972.chunk.js.map": "/static/js/787.4ece7972.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61774040.css",
+    "static/js/main.ac132360.js"
+  ]
+}
