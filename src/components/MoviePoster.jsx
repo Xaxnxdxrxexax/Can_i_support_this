@@ -9,6 +9,7 @@ export function MoviePoster({
   updateLocalStorage,
 }) {
   function handleClick(id) {
+    setsingleMovieInfo(null);
     fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
     )
