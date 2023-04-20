@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import posterNotFound from "../poster-not-found-background.jpeg";
 
 export function MoviePoster({
   movie,
@@ -54,7 +55,11 @@ export function MoviePoster({
       >
         <Link to={`/${movie.id}`}>
           <img
-            src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+            src={
+              movie.poster_path !== null
+                ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+                : posterNotFound
+            }
             alt={movie.title}
             title={`Go to ${movie.title}'s detailed page`}
           />

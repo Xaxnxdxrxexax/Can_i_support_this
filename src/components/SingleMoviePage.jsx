@@ -2,6 +2,7 @@ import "./styles/SimpleMoviePage.css";
 import { Configuration, OpenAIApi } from "openai";
 import { useEffect, useState } from "react";
 import IMDB_logo from "../IMDB_logo.png";
+import posterNotFound from "../poster-not-found-background.jpeg";
 
 export default function SingleMoviePage({ singleMovie }) {
   const [chatgptResponse, setChatgptResponse] = useState("");
@@ -61,13 +62,22 @@ export default function SingleMoviePage({ singleMovie }) {
       <div className="singleMoviePage">
         <img
           className="backgroundPoster"
-          src={`https://image.tmdb.org/t/p/original/${singleMovie.poster_path}`}
+          src={
+            singleMovie.poster_path
+              ? `https://image.tmdb.org/t/p/original/${singleMovie.poster_path}`
+              : posterNotFound
+          }
           alt={singleMovie.title}
         />
         <div className="topPageParent">
           <img
             className="foregroundPoster"
-            src={`https://image.tmdb.org/t/p/w300/${singleMovie.poster_path}`}
+            src={
+              singleMovie.poster_path
+                ? `https://image.tmdb.org/t/p/original/${singleMovie.poster_path}`
+                : posterNotFound
+            }
+            width="300px"
             alt={singleMovie.title}
           />
           <div className="topPageChild">
